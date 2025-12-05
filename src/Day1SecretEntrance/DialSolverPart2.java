@@ -5,7 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class DialSolverPart1 {
+public class DialSolverPart2 {
     private int dialPointer = 50;
     private int counter = 0;
 
@@ -17,12 +17,14 @@ public class DialSolverPart1 {
                 char direction = command.charAt(0);
                 int distance = Integer.parseInt(command.substring(1));
 
-                if (direction == 'R') {
-                    dialPointer = (dialPointer + distance) % 100;
-                } else {
-                    dialPointer = (dialPointer - distance + 100) % 100; // добавляем 100, чтобы скорретировать отрицательное число: -5 --> 95 (по условию)
+                for (int i = 0; i < distance; i++) { // смотрим сколько раз за поворот был пересечён ноль
+                    if (direction == 'R') {
+                        dialPointer = (dialPointer + 1) % 100;
+                    } else {
+                        dialPointer = (dialPointer - 1 + 100) % 100;
+                    }
+                    if (dialPointer == 0) counter++;
                 }
-                if (dialPointer == 0) counter++;
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading file", e);
