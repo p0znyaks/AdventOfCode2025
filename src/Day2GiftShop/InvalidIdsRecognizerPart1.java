@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class InvalidIdsRecognizer {
+public class InvalidIdsRecognizerPart1 {
     long sum;
 
     public long recognizeInvalidIds() {
